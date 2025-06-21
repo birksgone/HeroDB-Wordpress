@@ -1,0 +1,912 @@
+<head>
+    <meta charset="UTF-8">
+    <!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body> <!-- save onload DOM for reset button -->
+    <p class="abigrititle" style="background: #3A3A3A"><i class="fas fa-street-view"
+            style="color:gold; padding: 10px 10px;"></i> アビグリ計算 - {{current_post.cf_heroname_ja|raw}}</p>
+    <hr size="1" color="#5A5959">
+
+
+
+
+    <!-- 参照用にACF読み込み＆非表示  -->
+    <div class="acf_heroclass" style="display:none">{{current_post.cf_hero_class}}</div>
+    <div class="acf_herotier" style="display:none">{{current_post.cf_hero_star}}</div>
+
+
+    <table class="headertable" id="anchor-talencalc">
+        <th class="statth">アビリティグリッド - {{current_post.cf_heroname_ja|raw}}
+            <span class="help_area"></span>
+            <span class="help_icon"><i class="fas fa-question-circle" style="color:gold"></i></span>
+            <span class="tooltip"><i class="fas fa-question-circle" style="color:gold"></i>
+                アビリティアイコンをタップ（クリック）するたびに集計テーブルに数値が反映されます。ゲーム内と同様に上につながりのあるアビリティでなければ選択できません。<br><br>
+                再度タップすると選択を解除できます。なお、選択後でも左右の入れ替えができるようにしてありますので、途中のアビリティを左右逆にしたらどう数値が変化したなどの調べることも可能になっています。<br>
+                <img src="/wp-content/uploads/ac_assets/talentclac_asset/pos-switch.jpg"><br>
+
+                ■<strong>上級アビリティ</strong><br>
+                クラシック英雄がエンブレムの最終ノード20を取得した場合、ノード1、4、7、12、15のクラスアビリティの数値が高めに設定されます（クラスごとに別数値）。この条件に合致する場合はボーナス値を自動的に変更します。
+            </span>
+            <span id="cosVal" style="display: inline-block; _display: inline; font-weight: bold;"></span>
+        </th>
+    </table>
+    <!-- Telent Tree Start -->
+    <div class="topcontainer sectionbg">
+        <!-- 1st ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum1"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage talentpoint pos1-1" data-max="0"></span><br>
+                    <span class="percenttext classpecial pot1-1">+5%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 2nd ROW -->
+        <div class="outerrow-borderless">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum2"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos2-1" data-max="1"></span><br>
+                    <span class="percenttext pot2-1">+15%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos2-2" data-max="1"></span><br>
+                    <span class="percenttext pot2-2">+18%</span>
+                </div>
+            </div>
+        </div>
+        <!-- 3rd ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum3"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos3-1"></span><br>
+                    <span class="percenttext pot3-1">+15%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos3-2"></span><br>
+                    <span class="percenttext pot3-2">+18%</span>
+                </div>
+            </div>
+        </div>
+        <!-- 4th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum4"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage talentpoint pos4-1" data-max="1"></span><br>
+                    <span class="percenttext pot4-1 classpecial">+5%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 5th ROW -->
+        <div class="outerrow-borderless">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum5"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos5-1"></span><br>
+                    <span class="percenttext pot5-1">+15%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos5-2"></span><br>
+                    <span class="percenttext pot5-2">+18%</span>
+                </div>
+            </div>
+        </div>
+        <!-- 6th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum6"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos6-1"></span><br>
+                    <span class="percenttext pot6-1">+15%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos6-2"></span><br>
+                    <span class="percenttext pot6-2">+18%</span>
+                </div>
+            </div>
+        </div>
+        <!-- 7th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum7"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos7-1"></span><br>
+                    <span class="percenttext pot7-1 classpecial">+5%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 8th ROW -->
+        <div class="outerrow-borderless">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum8"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos8-1"></span><br>
+                    <span class="percenttext pot8-1">+15%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos8-2"></span><br>
+                    <span class="percenttext pot8-2">+18%</span>
+                </div>
+            </div>
+        </div>
+        <!-- 9th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum9"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos9-1"></span><br>
+                    <span class="percenttext pot9-1">+15%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos9-2"></span><br>
+                    <span class="percenttext pot9-2">+18%</span>
+                </div>
+            </div>
+        </div>
+        <!-- 10th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum10"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos10-1"></span><br>
+                    <span class="percenttext pot10-1">+5%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 11th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum11"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos11-1"></span><br>
+                    <span class="percenttext pot11-1">+15</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos11-2"></span><br>
+                    <span class="percenttext pot11-2">+18</span>
+                </div>
+            </div>
+        </div>
+        <!-- 12th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum12"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos12-1"></span><br>
+                    <span class="percenttext pot12-1 classpecial">+5%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 13th ROW -->
+        <div class="outerrow-borderless">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum13"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos13-1"></span><br>
+                    <span class="percenttext pot13-1">+15%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos13-2"></span><br>
+                    <span class="percenttext pot13-2">+18%</span>
+                </div>
+            </div>
+        </div>
+        <!-- 14th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum14"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos14-1"></span><br>
+                    <span class="percenttext pot14-1">+15%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos14-2"></span><br>
+                    <span class="percenttext pot14-2">+18%</span>
+                </div>
+            </div>
+        </div>
+        <!-- 15th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum15"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos15-1"></span><br>
+                    <span class="percenttext pot15-1 classpecial">+5%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 16th ROW -->
+        <div class="outerrow-borderless">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum16"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos16-1"></span><br>
+                    <span class="percenttext pot16-1">+15%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos16-2"></span><br>
+                    <span class="percenttext pot16-2">+18%</span>
+                </div>
+            </div>
+        </div>
+        <!-- 17th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum17"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos17-1"></span><br>
+                    <span class="percenttext pot17-1">+15%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos17-2"></span><br>
+                    <span class="percenttext pot17-2">+18%</span>
+                </div>
+            </div>
+        </div>
+        <!-- 18th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum18"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos18-1"></span><br>
+                    <span class="percenttext pot18-1">+5%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 19th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum19"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos19-1"></span><br>
+                    <span class="percenttext pot19-1">+15%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage pos19-2"></span><br>
+                    <span class="percenttext pot19-2">+18%</span>
+                </div>
+            </div>
+        </div>
+        <!-- 20th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum20"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+            <div class="iconcel iconcellastrow">
+                <div>
+                    <span class="spriteimage pos20-1"></span><br>
+                    <span class="percenttext pot20-1">+5%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 21st ROW -->
+        <div class="outerrow-borderless">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum21"></span><br>
+                </div>
+            </div>
+            <div class="iconcel mastericoncel">
+                <div>
+                    <span class="spriteimage pos21-1"></span><br>
+                    <span class="percenttext pot21-1">+50%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel mastericoncel">
+                <div>
+                    <span class="spriteimage pos21-2"></span><br>
+                    <span class="percenttext pot21-2">+60%</span>
+                </div>
+            </div>
+        </div>
+        <!-- 22nd ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum22"></span><br>
+                </div>
+            </div>
+            <div class="iconcel mastericoncel">
+                <div>
+                    <span class="spriteimage pos22-1"></span><br>
+                    <span class="percenttext pot22-1">+50%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel mastericoncel">
+                <div>
+                    <span class="spriteimage pos22-2"></span><br>
+                    <span class="percenttext pot22-2">+60%</span>
+                </div>
+            </div>
+        </div>
+        <!-- 23th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum23"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+            <div class="iconcel mastericoncel">
+                <div>
+                    <span class="spriteimage pos23-1"></span><br>
+                    <span class="percenttext pot23-1">+90%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 24th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum24"></span><br>
+                </div>
+            </div>
+            <div class="iconcel mastericoncel">
+                <div>
+                    <span class="spriteimage pos24-1"></span><br>
+                    <span class="percenttext pot24-1">+50</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                </div>
+            </div>
+            <div class="iconcel mastericoncel">
+                <div>
+                    <span class="spriteimage pos24-2"></span><br>
+                    <span class="percenttext pot24-2">+60</span>
+                </div>
+            </div>
+        </div>
+        <!-- 25th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum25"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+            <div class="iconcel mastericoncel">//iconcellastrow
+                <div>
+                    <span class="spriteimage pos25-1"></span><br>
+                    <span class="percenttext pot25-1">+90%</span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+        </div>
+        <!-- 26th ROW -->
+        <div class="outerrow">
+            <div class="numcel">
+                <div>
+                    <span class="spriteimagenum rownum26"></span><br>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+            <div class="iconcel"> <!-- concellastrow -->
+                <div>
+                    <span class="spriteimage pos26-1"></span><br>
+                    <span class="percenttext pot26-1"></span>
+                </div>
+            </div>
+            <div class="iconcel">
+                <div>
+                    <span class="spriteimage blankpx"></span><br>
+                    <span class="percenttext"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Suoerior Talent Section -->
+    <!-- <div class="supertalentsection">
+  <table class="titleinfo">
+    <tr>
+    <td>
+  <div class="superclassdesc">クラシック英雄のアビリティノード20を取得のため上級アビリティが有効になっています。</div>
+    </td>
+    </tr>
+  </table> -->
+    <!-- クラスアビ -->
+    <table class="titleinfo">
+        <!-- <th class="statth">クラスアビリティ - {{current_post.cf_hero_class_icon|raw}}{{current_post.cf_hero_class}}</th> -->
+        <tr>
+            <td>
+                <span class="classPagelink"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="classdesc"></div>
+            </td>
+        </tr>
+    </table>
+
+
+
+    <!-- パスガイド -->
+    <table class="baseinfotable">
+        <th class="statth">パスガイド
+            <span class="help_area"></span>
+            <span class="help_icon"><i class="fas fa-question-circle" style="color:gold"></i></span>
+            <span class="tooltip"><i class="fas fa-question-circle" style="color:gold"></i>
+                攻撃・防御・ライフを一般的によく使われる優先順位でテンプレート表示します（優先度の高いアビリティに黄色オーラを表示）<br><br>
+                アビリティの選択をせずにガイドだけ表示させたい場合は、「<i
+                    style="font-weight: bold">ガイドだけ表示</i>」のチェックボックスをつけてから各ガイドのボタンを選択してください。<br><br>
+                ※アビリティの選択後でも、ペアで左右の入れ替えが可能です。<br><br>
+                ※英雄によっては追加でボタンが特殊な優先順位が表示されている場合があります（リガルドのコスチューム用など）<br><br>
+                ※コスチュームボーナスはカンストとして算出しています。<br><br>
+                ※リセットを押すと選択を初期化します<br><br>
+                <i style="color: Salmon;">※数値が更新されなかったり表示がおかしいと思われる場合は、ガイドを選択し直すかページ自体を再読み込みしてください。</i>
+            </span>
+            <span id="cosVal" style="display: inline-block; _display: inline; font-weight: bold;"></span>
+        </th>
+        <tr>
+            <td>
+                <div class="radopathArea" id="guideset">
+                    <p><input type="radio" name="pg" id="path0" value="guide-none" checked><label for="path0"><img
+                                class="resetbuton"
+                                src="https://bbcamp.info/wp-content/uploads/talentcalc/resetbutton.png"> リセット</label>
+                    </p>
+                    <p><input type="radio" name="pg" id="path1" value="guide-DP"><label for="path1"
+                            class="path1class">攻撃>防御>ライフ</label></p>
+                    <p><input type="radio" name="pg" id="path2" value="guide-PL"><label for="path2"
+                            class="path2class">防御>ライフ>攻撃</label></p>
+                    <p class="addbutton cosaddbutton"><input type="radio" name="pg" id="path3" name="label3name"
+                            value="guide-ADD"><label for="path3" class="path3class"></label></p>
+                </div>
+            </td>
+        </tr>
+        <th colspan="3" style="padding: 5px 0px 5px 0px;"><input type="checkbox" name="deselecticon" id="deselecticon"
+                value="deselected"><label for="deselecticon"> ガイドだけ表示</label>
+        </th>
+    </table>
+
+    <!------------------------->
+    <!--  Limit Brek Option  -->
+    <!------------------------->
+
+    <table class="usercalc costumebonustable">
+        <tr>
+            <td colspan="3" style="padding-top: 10px; padding-bottom: 10px;">
+                <span class="help_area">
+                    <span class="help_icon"><i class="fas fa-question-circle" style="color:gold"></i></span>
+                    <span class="tooltip">
+                        1回目のリミットブレーク(LB1)、さらに2回目のリミットブレーク(LB2)によるステータス値の変化を確認できます。「LB1」または「LB2」を選択すると、それぞれLB上限レベルでのステータス値を算出します。<br>
+                        <table>
+                            <tr>
+                                <th>レア度</th>
+                                <th>レベル上限</th>
+                                <th>LB1上限</th>
+                                <th>LB2上限</th>
+                            </tr>
+                            <tr>
+                                <td>★5</td>
+                                <td>80</td>
+                                <td>85</td>
+                                <td>90</td>
+                            </tr>
+                            <tr>
+                                <td>★4</td>
+                                <td>70</td>
+                                <td>75</td>
+                                <td>80</td>
+                            </tr>
+                            <tr>
+                                <td>★3</td>
+                                <td>50</td>
+                                <td>55</td>
+                                <td>60</td>
+                            </tr>
+                        </table>
+                        <strong><span
+                                style="color: orange">エーテルパワー</span></strong>：LB2のレベル上限で各英雄に個別に指定されたエーテルパワーを獲得します。LB2を選択するとエーテルパワーが有効になります。詳細は<a
+                            href="https://bbcamp.info/wiki/limit-break2/">リミットブレーク</a>のページで確認してください（全リストあり）
+                    </span>
+                    <span stye="padding-top: 10px; padding-bottom: 10px;">リミットブレーク</span>
+                    <span id="cosforabigri"
+                        style="display: inline-block; _display: inline; font-weight: bold; color: lightgreen;"></span></span>
+            </td>
+        </tr>
+        <!-- </tr>
+    <tr><td colspan="3" style="padding: 10px 0px 10px 0px;"><input type="checkbox" name="cosboxlb" id="labelLB" value="00"><label for="coslabelx" onclick=""> リミットブレークする(≒) <img src="https://bbcamp.info/wp-content/uploads/bot/card_ascension_bar_limitbreak.png" width="18px" valign="middle"></label>
+    </td>
+  </tr> -->
+        <!-- <td>
+      <span id="classval" style=" display: inline-block; _display: inline; font-weight: bold;"></span>
+    </td> -->
+        <tr>
+            <td colspan="2">
+                <div class="radioLBArea" id="makeImg">
+                    <input type="radio" name="lbselectradio" id="lb0" value="radiolb0" checked><label for="lb0"></label>
+                    <input type="radio" name="lbselectradio" id="lb1" value="radiolb1"><label for="lb1"></label>
+                    <input type="radio" name="lbselectradio" id="lb2" value="radiolb2"><label for="lb2"></label>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td width="110px"><img class="apicon icon_opacity"
+                    src="/wp-content/uploads/camp-img/aether/ap_nodata.png"><br><span
+                    class="apiconhantei mukotext">無効</span></td>
+            <td style="text-align:left; padding: 0 10px 0 0;"><span class="aptitle">防御力増加：</span><span
+                    class="aptext">防御力+20%</span></td>
+        </tr>
+    </table>
+
+    <!-- 集計結果 -->
+    <table class="baseinfotable" style="margin: 0px 10px 0px 0px;">
+        <th class="statth" colspan="8">コスト</th>
+        <tr>
+            <td width="auto" valign="middle" class="tableemblemicon">{{current_post.cf_hero_class_icon|raw}}</td>
+            <td width="auto" valign="middle" style="valign: top;"><span id="point-emblem">0</span></td>
+            <td width="auto" valign="middle" class="tableemblemMastericon"></td>
+            <td width="auto" valign="middle" style="valign: top;"><span id="point-masteremblem">0</span></td>
+            <td width="auto" valign="middle"><img class="tableicon" src="/wp-content/uploads/talentcalc/foods-24.png">
+            </td>
+            <td width="auto" valign="middle" style="valign: top;"><span id="point-food">0</span></td>
+            <td width="auto" valign="middle"><img class="tableicon" src="/wp-content/uploads/talentcalc/iron-24.png">
+            </td>
+            <td width="auto" valign="middle" style="valign: top;"><span id="point-iron">0</span></td>
+        </tr>
+    </table>
+
+    <table class="baseinfotable" style="margin: 10px 0px 0px 0px;">
+        <th class="statth basestatstext" colspan="3">ベース値 (エンブレムなし)</th>
+        <tr>
+            <td width="33%" valign="middle" align="center"><i class="fas fa-gavel" style="color: white;"> 攻撃力</i></td>
+            <td width="33%" valign="middle" align="center"><i class="fas fa-shield-alt" style="color: white;"> 防御力</i>
+            </td>
+            <td width="33%" valign="middle" align="center"><i class="fas fa-heart" style="color: white;"> ライフ</i></td>
+        </tr>
+        <tr class="cosplaceholder">
+            <td width="33%" valign="middle" align="center"><span class="largenumbase"
+                    id="normalattack">{{current_post.cf_hero_stats_attack}}</span></td>
+            <td width="33%" valign="middle" align="center"><span class="largenumbase"
+                    id="normalprotection">{{current_post.cf_hero_stats_deffence}}</span></td>
+            <td width="33%" valign="middle" align="center"><span class="largenumbase"
+                    id="normallife">{{current_post.cf_hero_stats_hp}}</span></td>
+        </tr>
+        <th class="statth" colspan="3">エンブレムボーナス</th>
+        <tr>
+            <td width="33%" valign="middle" align="center"><span class="largenumbonus" id="bonusattack">0</span></td>
+            <td width="33%" valign="middle" align="center"><span class="largenumbonus" id="bonusprotection">0</span>
+            </td>
+            <td width="33%" valign="middle" align="center"><span class="largenumbonus" id="bonuslife">0</span></td>
+        </tr>
+        <tfoot>
+            <th class="statth" colspan="3">合 計</th>
+            <tr>
+                <td width="33%" valign="middle" align="center"><span class="largenumbonus" id="totalattack">0</span>
+                </td>
+                <td width="33%" valign="middle" align="center"><span class="largenumbonus" id="totalprotection">0</span>
+                </td>
+                <td width="33%" valign="middle" align="center"><span class="largenumbonus" id="totallife">0</span></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <!-- Misc Summary -->
+    <table class="bonusinfotable" style="margin: 0px 0px 0px 0px;">
+        <th class="statth" colspan="8">その他ボーナス</th>
+        <tr>
+            <td class="classbpnusicon" width="10%" valign="middle"><img class="tableicon2"
+                    src="/wp-content/uploads/talentcalc/36-abi-general.png"></td>
+            <td width="15%" valign="middle" style="valign: top;"><span id="talent-bonus">0</span></td>
+            <td width="10%" valign="middle"><img class="tableicon2" src="/wp-content/uploads/talentcalc/36-heal.png">
+            </td>
+            <td width="15%" valign="middle" style="valign: top;"><span id="heal-bonus">0</span></td>
+            　　<td width="10%" valign="middle"><img class="tableicon2" src="/wp-content/uploads/talentcalc/36-crit.png">
+            </td>
+            <td width="15%" valign="middle" style="valign: top;"><span id="crit-bonus">0</span></td>
+            <td width="10%" valign="middle"><img class="tableicon2" src="/wp-content/uploads/talentcalc/36-mana.png">
+            </td>
+            <td width="15%" valign="middle" style="valign: top;"><span id="mana-bonus">0</span></td>
+        </tr>
+    </table>
+    <div class="versionnum"><span class="versiontext">V34b1</span></div>
+
+
+</body>
+
+<!------------------------->
+<!-- HDB3 V4.0.0 Release -->
+<!------------------------->

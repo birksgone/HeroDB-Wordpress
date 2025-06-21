@@ -1,0 +1,473 @@
+/* Hide 2nd Cos option  */
+.hidecostable{
+    display:none !important;
+  }
+  
+  /* --- ベーステーブル --- */
+  table.baseinfotable {
+    border-bottom: 2px solid #5A5959;
+    background-color: #2A2D31;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+  }
+  table.baseinfotable td, table.baseinfotable th {
+    border-bottom: 1px solid #4A4A4A;
+    text-align: center;
+    padding: 4px 3px;
+  }
+  table.baseinfotable tbody td {
+    font-size: 13px;
+    color: #E6E6E6;
+  }
+  table.baseinfotable tfoot td {
+    font-size: 12px;
+  }
+  
+  span.bonusresultdisplay{
+     font-size: 9px;
+  }
+  
+  /* --- Redult Table --- */
+  table.resulttable {
+    border-bottom: 2px solid #5A5959;
+    background-color: #2A2D31;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+  }
+  table.resulttable td, table.resulttable th {
+    border-bottom: 1px solid #4A4A4A;
+    text-align: center;
+    padding: 4px 3px;
+  }
+  table.resulttable tbody td {
+    font-size: 13px;
+    color: #E6E6E6;
+  
+  }
+  table.resulttable tfoot td {
+    font-size: 12px;
+  }
+  /* --- Redult Table --- */
+  
+  
+  span.bonusresultdisplay{
+     font-size: 9px;
+  }
+  
+  /* --- 入力画面のテーブル --- */
+  table.usercalc {
+    border-bottom: 2px solid #5A5959;
+    background-color: #2A2D31;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+  }
+  table.usercalc td, table.usercalc th {
+    border-bottom: 1px solid #4A4A4A;
+    text-align: center;
+    padding: 4px 3px;
+  }
+  table.usercalc tbody td {
+    font-size: 13px;
+    color: #E6E6E6;
+  }
+  table.usercalc tfoot td {
+    font-size: 12px;
+  }
+  table tr:nth-child(odd) td {
+      background: #3A3A3A;
+  }
+  table.usercalc tr:nth-child(even) td {
+      padding: 15px 3px;
+  }
+  
+  
+  /* --- タイル数表示 --- */
+  .innerBasetile{
+    font-size: 28px;
+    font-weight: normal;
+    text-align: center;
+  }
+  .numtilebonus{
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: lightgreen;
+  }
+  #base2{
+    font-size: 16px;
+    text-align: center;
+  }
+  #bonus2{
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    color: lightgreen;
+  }
+  /* --- ニンジャ数表示 --- */
+  .ninjatilebase{
+    font-size: 18px;
+    font-weight: normal;
+    text-align: left;
+  }
+  .ninjatilebonus{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: lightgreen;
+  }
+  
+  /* --- その他 --- */
+  body{
+      color: white;
+  }
+  
+  #manaspeed{
+    color: lightblue;
+    display: none;
+  }
+  .manatitle{
+   font-size: 18px;
+   font-weight: bold;
+   background-color:"#5A5959";
+  }
+  
+  /* --- エンブレムボーナスCSS ------------------------------------------------------------------------------- */
+  .radioArea input[type="radio"] {
+    width         : 30pt;        /* 大きさ：横 */
+    height        : 20pt;        /* 大きさ：縦 */
+    vertical-align: top;         /* 並び位置   */
+    visibility:hidden;
+  }
+  
+   /* --- チェックボックス直後のlabel --- */
+  .radioArea input[type="radio"] + label {
+    padding       : 0 4px;                      /* labelの余白 */
+    font-size     : 13pt;                       /* labelの文字サイズ */
+    font-weight   : bold;                       /* 文字太さ   */
+  
+    border-radius : 5px;                        /* labelの角丸 */
+    background    : #4A4A4A;                    /* lebelの背景 */
+    cursor        : pointer;                    /* カーソル設定 */
+    transition    : .2s;                        /* なめらか変化 */
+  }
+   /* --- 選択されたチェックボックス直後のlabel --- */
+  .radioArea input[type="radio"]:checked + label {
+    background    : #dfc15e;                    /* lebelの背景 */
+    color: #444444;
+  }
+   /* --- 選択されていないチェックボックス直後のlabelにマウスが乗った --- */
+  .radioArea input[type="radio"]:not(:checked) + label:hover {
+    background    : rgba(223, 193, 94, 0.40);     /* lebelの背景 */
+  }
+  
+  /* --- Simplify Costumeラジオボタン ------------------------------------------------------------------------------- */
+  .radiosimplecosArea {
+    padding: 10px 0 0 0;
+  }
+  .radiosimplecosArea input[type="radio"] {
+    width         : 12pt;        /* 大きさ：横 */
+    height        : 20pt;        /* 大きさ：縦 */
+    vertical-align: middle;         /* 並び位置   */
+    gap: 0;
+    visibility:hidden;
+  }
+  
+   /* --- チェックボックス直後のlabel --- */
+   .radiosimplecosArea input[type="radio"] + label {
+    padding       : 33px 2px 0 2px;             /* labelの余白 */
+    font-size     : 18pt;                       /* labelの文字サイズ */
+    font-weight   : bold;                       /* 文字太さ   */
+  
+    border-radius : 5px;                        /* labelの角丸 */
+    background    : #4A4A4A;                    /* lebelの背景 */
+    cursor        : pointer;                    /* カーソル設定 */
+    transition    : .2s;                        /* なめらか変化 */
+  }
+   /* --- 選択されたチェックボックス直後のlabel --- */
+  .radiosimplecosArea input[type="radio"]:checked + label {
+    background    : #dfc15e;                    /* lebelの背景 */
+    color: #444444;
+  }
+   /* --- 選択されていないチェックボックス直後のlabelにマウスが乗った --- */
+  .radiosimplecosArea input[type="radio"]:not(:checked) + label:hover {
+    background    : rgba(223, 193, 94, 0.40);     /* lebelの背景 */
+  }
+  
+  
+  
+  /* --- radocosAreaラジオボタン ------------------------------------------------------------------------------- */
+  .radiocosArea input[type="radio"] {
+    width         : 12pt;        /* 大きさ：横 */
+    height        : 20pt;        /* 大きさ：縦 */
+    vertical-align: middle;         /* 並び位置   */
+    visibility:hidden;
+  }
+  
+   /* --- チェックボックス直後のlabel --- */
+  .radiocosArea input[type="radio"] + label {
+    padding       : 0 2px;                      /* labelの余白 */
+    font-size     : 38pt;                       /* labelの文字サイズ */
+    font-weight   : bold;                       /* 文字太さ   */
+  
+    border-radius : 5px;                        /* labelの角丸 */
+    background    : #4A4A4A;                    /* lebelの背景 */
+    cursor        : pointer;                    /* カーソル設定 */
+    transition    : .2s;                        /* なめらか変化 */
+  }
+   /* --- 選択されたチェックボックス直後のlabel --- */
+  .radiocosArea input[type="radio"]:checked + label {
+    background    : #dfc15e;                    /* lebelの背景 */
+    color: #444444;
+  }
+   /* --- 選択されていないチェックボックス直後のlabelにマウスが乗った --- */
+  .radiocosArea input[type="radio"]:not(:checked) + label:hover {
+    background    : rgba(223, 193, 94, 0.40);     /* lebelの背景 */
+  }
+  
+  /* --- 2着目 radocosAreaラジオボタン ------------------------------------------------------------------------------- */
+  .radio2cosArea input[type="radio"] {
+    width         : 8pt;        /* 大きさ：横 */
+    height        : 20pt;        /* 大きさ：縦 */
+    vertical-align: middle;         /* 並び位置   */
+    visibility:hidden;
+  }
+  
+   /* --- チェックボックス直後のlabel --- */
+  .radio2cosArea input[type="radio"] + label {
+    padding       : 0 2px;                      /* labelの余白 */
+    font-size     : 38pt;                       /* labelの文字サイズ */
+    font-weight   : bold;                       /* 文字太さ   */
+  
+    border-radius : 5px;                        /* labelの角丸 */
+    background    : #4A4A4A;                    /* lebelの背景 */
+    cursor        : pointer;                    /* カーソル設定 */
+    transition    : .2s;                        /* なめらか変化 */
+  }
+   /* --- 選択されたチェックボックス直後のlabel --- */
+  .radio2cosArea input[type="radio"]:checked + label {
+    background    : #dfc15e;                    /* lebelの背景 */
+    color: #444444;
+  }
+   /* --- 選択されていないチェックボックス直後のlabelにマウスが乗った --- */
+  .radio2cosArea input[type="radio"]:not(:checked) + label:hover {
+    background    : rgba(223, 193, 94, 0.40);     /* lebelの背景 */
+  }
+  
+  /* --- radioelinkAreaラジオボタン ------------------------------------------------------------------------------- */
+  .radioelinkArea input[type="radio"] {
+    width         : 20pt;        /* 大きさ：横 */
+    height        : 26pt;        /* 大きさ：縦 */
+    vertical-align: top;         /* 並び位置   */
+    visibility:hidden;
+  }
+  
+   /* --- チェックボックス直後のlabel --- */
+  .radioelinkArea input[type="radio"] + label {
+    padding       : 1 4px;                      /* labelの余白 */
+    font-size     : 13pt;                       /* labelの文字サイズ */
+    font-weight   : bold;                       /* 文字太さ   */
+  
+    border-radius : 5px;                        /* labelの角丸 */
+    background    : #4A4A4A;                    /* lebelの背景 */
+    cursor        : pointer;                    /* カーソル設定 */
+    transition    : .2s;                        /* なめらか変化 */
+  }
+   /* --- 選択されたチェックボックス直後のlabel --- */
+  .radioelinkArea input[type="radio"]:checked + label {
+    background    : #dfc15e;                    /* lebelの背景 */
+    color: #444444;
+  }
+   /* --- 選択されていないチェックボックス直後のlabelにマウスが乗った --- */
+  .radioelinkArea input[type="radio"]:not(:checked) + label:hover {
+    background    : rgba(223, 193, 94, 0.40);     /* lebelの背景 */
+  }
+  
+  /* --- radiofamilyAreaラジオボタン ------------------------------------------------------------------------------- */
+  .radiofamilyArea input[type="radio"] {
+    width         : 12pt;        /* 大きさ：横 */
+    height        : 70pt;        /* 大きさ：縦 */
+    vertical-align: top;         /* 並び位置   */
+    visibility: hidden;
+  
+  }
+  
+   /* --- チェックボックス直後のlabel --- */
+  .radiofamilyArea input[type="radio"] + label {
+    padding       : 2px;                      /* labelの余白 */
+    font-size     : 22pt;                       /* labelの文字サイズ */
+    font-weight   : bold;                       /* 文字太さ   */
+  
+    border-radius : 5px;                        /* labelの角丸 */
+    background    : #4A4A4A;                    /* lebelの背景 */
+    cursor        : pointer;                    /* カーソル設定 */
+    transition    : .2s;                        /* なめらか変化 */
+  }
+   /* --- 選択されたチェックボックス直後のlabel --- */
+  .radiofamilyArea input[type="radio"]:checked + label {
+    background    : #dfc15e;                    /* lebelの背景 */
+    color: #444444;
+  }
+   /* --- 選択されていないチェックボックス直後のlabelにマウスが乗った --- */
+  .radiofamilyArea input[type="radio"]:not(:checked) + label:hover {
+    background    : rgba(223, 193, 94, 0.40);     /* lebelの背景 */
+  }
+  
+  
+  /* --- radioTroopAreaラジオボタン ------------------------------------------------------------------------------- */
+  .radioTroopArea input[type="radio"] {
+    width         : auto;        /* 大きさ：横 */
+    height        : auto;        /* 大きさ：縦 */
+    vertical-align: baseline;         /* 並び位置   */
+    visibility: hidden;
+  
+  }
+  
+   /* --- チェックボックス直後のlabel --- */
+  .radioTroopArea input[type="radio"] + label {
+    padding       : 24px 4px 0 4px;                      /* labelの余白 */
+    font-size     : 20pt;                       /* labelの文字サイズ */
+    font-weight   : bold;                       /* 文字太さ   */
+  
+    border-radius : 5px;                        /* labelの角丸 */
+    background    : #4A4A4A;                    /* lebelの背景 */
+    cursor        : pointer;                    /* カーソル設定 */
+    transition    : .2s;                        /* なめらか変化 */
+  }
+   /* --- 選択されたチェックボックス直後のlabel --- */
+  .radioTroopArea input[type="radio"]:checked + label {
+    background    : #dfc15e;                    /* lebelの背景 */
+    color: #444444;
+  }
+   /* --- 選択されていないチェックボックス直後のlabelにマウスが乗った --- */
+  .radioTroopArea input[type="radio"]:not(:checked) + label:hover {
+    background    : rgba(223, 193, 94, 0.40);     /* lebelの背景 */
+  }
+  
+  
+  
+  
+  
+  /* --- radiohelpAreaラジオボタン ------------------------------------------------------------------------------- */
+  .radiohelpArea input[type="radio"] {
+    width         : 20pt;        /* 大きさ：横 */
+    height        : 20pt;        /* 大きさ：縦 */
+    vertical-align: top;         /* 並び位置   */
+    visibility:hidden;
+  }
+  
+   /* --- チェックボックス直後のlabel --- */
+  .radioehelpArea input[type="radio"] + label {
+    padding       : 0 4px;                      /* labelの余白 */
+    font-size     : 13pt;                       /* labelの文字サイズ */
+    font-weight   : bold;                       /* 文字太さ   */
+  
+    border-radius : 5px;                        /* labelの角丸 */
+    background    : #4A4A4A;                    /* lebelの背景 */
+    cursor        : pointer;                    /* カーソル設定 */
+    transition    : .2s;                        /* なめらか変化 */
+  }
+   /* --- 選択されたチェックボックス直後のlabel --- */
+  .radiohelpArea input[type="radio"]:checked + label {
+    background    : #dfc15e;                    /* lebelの背景 */
+    color: #444444;
+  }
+   /* --- 選択されていないチェックボックス直後のlabelにマウスが乗った --- */
+  .radiohelpArea input[type="radio"]:not(:checked) + label:hover {
+    background    : rgba(223, 193, 94, 0.40);     /* lebelの背景 */
+  }
+  
+   /* --- 兵団メニュー --- */
+  .selecttroop {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 15px;
+      width: 100%;
+  }    .select select {
+          font-size: 14px;
+          font-weight: bold;
+          display: inline-block;
+          width: 80%;
+          cursor: pointer;
+          padding: 10px 15px;
+          outline: 0;
+          border: 0px solid #000000;
+          border-radius: 4px;
+          background: #DFC15E;
+          color: #232425;
+          appearance: none;
+          -webkit-appearance: menulist;
+          -moz-appearance: menulist;
+      }
+          .select select::-ms-expand {
+              display: none;
+          }
+          .select select:hover,
+          .select select:focus {
+              color: white;
+              background: #000000;
+          }
+          .select select:disabled {
+              opacity: 0.5;
+              pointer-events: none;
+          }
+  .select_arrow {
+      position: absolute;
+      top: 16px;
+      right: 15px;
+      pointer-events: none;
+      border-style: solid;
+      border-width: 8px 5px 0px 5px;
+      border-color: #7b7b7b transparent transparent transparent;
+  }
+  .selecttroop select:hover ~ .select_arrow,
+  .selecttroop select:focus ~ .select_arrow {
+      border-top-color: #000000;
+  }
+  .selecttroop select:disabled ~ .select_arrow {
+      border-top-color: #cccccc;
+  }
+  
+   /* --- レアのときにアセンドを1つ使えなくする --- */
+  .btndisabled{
+    opacity: 0.3;
+  }
+  
+   /* --- Program version --- */
+  .versionnum{
+      font-size: 8px;
+    color: grey;
+        text-align: right;
+      margin: -18px 0 10px 0;
+  }
+  
+   /* --- ツールチップ --- */
+  .help_area {
+      position:relative;
+  }
+  .help_icon {
+      width:20px;
+      height:20px;
+      line-height:20px;
+      vertical-align:middle;
+      font-size:16px;
+      text-align:center;
+      cursor:pointer;
+  }
+  .tooltip {
+      z-index: 999;
+    width: 300px;
+      position:absolute;
+      background-color:rgba(0,0,0,0.8);;
+      color:white;
+      size: 12px;
+      text-align: left;
+      border: solid 2px #DFC15E;
+      border-radius:0.3em;
+      padding:1em;
+      margin:0.2em 0.5em;
+      display:none;
+  }
+   /* --- ★5兵団テスト --- */

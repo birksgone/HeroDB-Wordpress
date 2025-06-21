@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!--  v1.4.0 hotm costume change-->
+    <meta charset="UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body lass="question">
+    <p class="manatitle" style="background: #3a3a3a" id="anchor-manacalc">
+        <i class="fas fa-calculator" style="color: gold; padding: 10px 10px"></i>
+        マナ速度計算機 - {{current_post.cf_heroname_ja|raw}}
+    </p>
+    <hr size="1" color="#5A5959" />
+
+    <!-- 計算用に非表示にACFフィールド値を取得、IDを付けたいだけの理由でnoneで隠している -->
+    <div id="manaspeed" style="display: none">{{current_post.cf_hero_mana_speed}}</div>
+    <div id="herograde" style="display: none">{{current_post.cf_hero_star_name}}</div>
+    <div id="cosflag" style="display: none">{{current_post.cf_hero_costume_flag_Cost}}</div>
+    <div id="heroOrigin" style="display: none">{{current_post.cf_hero_origin}}</div>
+    <div id="familyname" style="display: none">{{current_post.cf_hero_family}}</div>
+    <div id="costumeflag" style="display: none">{{current_post.cf_hero_costume_flag}}</div>
+    <div id="heronameja" style="display: none">{{current_post.cf_heroname_ja}}</div>
+    <div id="cosEventFlag" style="display: none">{{current_post.cf_hero_costume_flag}}</div>
+
+    <div style="font-size: 12px">
+        選択したコスチュームボーナスは、自動的に下の「アビグリ計算」に反映されます。コスチュームとエンブレムによりステータス値がどのように変化するかを確認できます。
+    </div>
+
+    <!------------------------>
+    <!-- エンブレムボーナス -->
+    <!------------------------>
+    <table class="usercalc">
+        <tbody>
+            <tr>
+                <td>{{current_post.cf_hero_class_icon|raw}}<br />
+                    <span class="help_area">
+                        <span class="help_icon"><i class="fas fa-question-circle" style="color: gold"></i></span>
+                        <span class="tooltip">
+                            説明：アビリティグリッドのエンブレムを進めていくことで得られるマナ生成のボーナス。各クラスごとにボーナス値とノード位置が異なります。詳細は各リンクで参照してください。エンブレムが到達してないか存在しない場合は「なし」を選択してください。「あり」を選択すると自動的に現在表示している英雄クラスのボーナスが加算されます。<br /><br />
+                            　<img src="/wp-content/uploads/camp-img/class/class-Barbarian.png" width="20px"
+                                valign="bottom" /><a
+                                href="https://bbcamp.info/wiki/class-barbarian/">バーバリアン</a>：2%：ノード19<br />
+                            　<img src="/wp-content/uploads/camp-img/class/class-Cleric.png" width="20px"
+                                valign="bottom" /><a href="https://bbcamp.info/wiki/class-cleric/">牧師</a>：2%：ノード19<br />
+                            　<img src="/wp-content/uploads/camp-img/class/class-Druid.png" width="20px"
+                                valign="bottom" /><a
+                                href="https://bbcamp.info/wiki/class-druid/">ドルイド</a>：4%：ノード20<br />
+                            　<img src="/wp-content/uploads/camp-img/class/class-Fighter.png" width="20px"
+                                valign="bottom" /><a
+                                href="https://bbcamp.info/wiki/class-fighter/">戦士</a>：2%：ノード19<br />
+                            　<img src="/wp-content/uploads/camp-img/class/class-Monk.png" width="20px"
+                                valign="bottom" /><a href="https://bbcamp.info/wiki/class-monk/">モンク</a>：4%：ノード20<br />
+                            　<img src="/wp-content/uploads/camp-img/class/class-Paladin.png" width="20px"
+                                valign="bottom" /><a
+                                href="https://bbcamp.info/wiki/class-paladin/">パラディン</a>：2%：ノード19<br />
+                            　<img src="/wp-content/uploads/camp-img/class/class-Ranger.png" width="20px"
+                                valign="bottom" /><a
+                                href="https://bbcamp.info/wiki/class-ranger/">レンジャー</a>：2%：ノード8<br />
+                            　<img src="/wp-content/uploads/camp-img/class/class-Rogue.png" width="20px"
+                                valign="bottom" /><a href="https://bbcamp.info/wiki/class-rogue/">ローグ</a>：2%：ノード8<br />
+                            　<img src="/wp-content/uploads/camp-img/class/class-Sorcerer.png" width="20px"
+                                valign="bottom" /><a
+                                href="https://bbcamp.info/wiki/class-sorcerer/">魔術師</a>：4%：ノード20<br />
+                            　<img src="/wp-content/uploads/camp-img/class/class-Wizard.png" width="20px"
+                                valign="bottom" /><a
+                                href="https://bbcamp.info/wiki/class-wizard/">ウィザード</a>：2%：ノード19<br /> </span>エンブレムボーナス
+                        <div id="whatclass" style="display: inline-block; _display: inline">
+                            {{current_post.cf_hero_class}}</div>
+                        <span id="classval" style=" display: inline-block; _display: inline; font-weight: bold;"></span>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="radioArea" id="makeImg">
+                        <input type="radio" name="nclass" id="class1" value="no" checked /><label
+                            for="class1">なし</label>
+                        <input type="radio" name="nclass" id="class2" value="yes" /><label for="class2">あり</label>
+                    </div>
+                </td>
+            </tr>
+            <!-------------------------->
+            <!-- コスチュームボーナス -->
+            <!-------------------------->
+            <tr>
+                <td>
+                    <img src="https://bbcamp.info/wp-content/uploads/camp-img/manacalc/icon-costume.png"
+                        width="30px" /><br />
+                    <span class="help_area">
+                        <span class="help_icon"><i class="fas fa-question-circle" style="color: gold"></i></span>
+                        <span class="tooltip"><img src="/wp-content/uploads/camp-img/icon-costumemask.png" width="20px"
+                                valign="bottom" />
+                            説明：初期値ではコスチュームを使用しない「なし」に設定されています。アセンドとレベル上限に達したコスチュームを何着使用しているかを選択してください。
+                            <br /><br />コスチュームを持てない英雄の場合は「選択不可」となり選べません。<br /><br />英雄の身元によってマナボーナスが異なりますが自動的にボーナス値を算出します。
+                            </div>
+                        </span>
+                        コスチュームボーナス
+                        <span id="cosValTitle"
+                            style=" display: inline-block; _display: inline; font-weight: bold;"></span></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="radiosimplecosArea" id="cosform">
+                        <input type="radio" name="radiocos" id="coslabel0" value="nocos" checked />
+                        <label for="coslabel0"><img src="/wp-content/uploads/camp-img/manacalc/cos0button.png"
+                                max-height="10px" /></label>
+                        <input type="radio" name="radiocos" id="coslabel1" value="firstcos" />
+                        <label for="coslabel1"><img src="/wp-content/uploads/camp-img/manacalc/cos1button.png"
+                                max-height="10px" /></label>
+                        <input type="radio" name="radiocos" id="coslabel2" value="secondcos" />
+                        <label for="coslabel2"><img src="/wp-content/uploads/camp-img/manacalc/cos2button.png"
+                                max-height="10px" /></label>
+                        <input type="radio" name="radiocos" id="coslabel3" value="thirdcos" />
+                        <label for="coslabel3"><img src="/wp-content/uploads/camp-img/manacalc/cos3button.png"
+                                max-height="10px" /></label>
+                        <input type="radio" name="radiocos" id="coslabel4" value="fourthcos" />
+                        <label for="coslabel4"><img src="/wp-content/uploads/camp-img/manacalc/cos4button.png"
+                                max-height="10px" /></label>
+                    </div>
+                </td>
+            </tr>
+            <!-------------------------->
+            <!--- ファミリーボーナス --->
+            <!------------------------
+        <tr class="trheader">
+          <td id="familyicon">
+            <img
+              src="https://bbcamp.info/wp-content/uploads/camp-img/manacalc/mana_family.png"
+              width="100px"
+            /><br />
+            <span class="help_area">
+              <span class="help_icon"
+                ><i class="fas fa-question-circle" style="color: gold"></i
+              ></span>
+              <span class="tooltip">
+                説明：特定のファミリー英雄が同じチームに2人以上いる場合、その人数を選択してください。その英雄数に応じてボーナスを得られます。<br />
+                マナボーナスを得られない他のファミリー、あるいは非ファミリーの英雄を選んでいる場合は選択ができません。<br />
+                また、殺害者ファミリーのマナボーナスは人数と積み上げ回数でボーナス値が変化してしまうためここでは計算に含めていません。
+                <br /><br />
+                以下は1/2/3/4/5人の各ボーナス値。モルロヴィアは3人の上限があります。<br />
+                <img src="/wp-content/uploads/camp-img/family/sakura.png" width="22px" valign="middle">サクラ：+3%/+6%/+9%/+11%/+13%<br />
+                <img src="/wp-content/uploads/camp-img/family/pirates.png" width="22px" valign="middle">パイレーツ：+2%/+4%/+7%/+12%<br>
+                <img src="/wp-content/uploads/camp-img/family/wonderland.png" width="22px"valign="middle">不思議の国：+2%/+4%/+7%/+12%<br/>
+                <img src="/wp-content/uploads/camp-img/family/morlovia.png" width="22px" valign="middle">モルロヴィア：+3%/+6%/+9%<br/>
+              </span>
+              <span id="famValue" style=" display: inline-block; _display: inline; font-weight: bold;"></span></span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="radiocosArea" id="makeImg">
+              <input type="radio" name="n4" id="fam1" value="0" checked /><label
+                for="fam1"
+                >0/1人</label
+              >
+              <input type="radio" name="n4" id="fam2" value="2" /><label
+                for="fam2"
+                >2人</label
+              >
+              <input type="radio" name="n4" id="fam3" value="3" /><label
+                for="fam3"
+                >3人</label
+              >
+              <input type="radio" name="n4" id="fam4" value="4" /><label
+                for="fam4"
+                >4人</label
+              >
+              <input type="radio" name="n4" id="fam5" value="5" /><label
+                for="fam5"
+                >5人</label
+              >
+            </div>
+          </td>
+        </tr>
+         -->
+            <!-------------------------->
+            <!---- マナ兵団ボーナス ---->
+            <!-------------------------->
+            <tr class="trheader">
+                <!-- <td><span class="troopimg"><img src="https://bbcamp.info/wp-content/uploads/camp-img/manacalc/alltroops.png" width="160px"></span></td><br> -->
+                <td>
+                    <span class="help_area">
+                        <span class="help_icon"><i class="fas fa-question-circle" style="color: gold"></i></span>
+                        <span class="tooltip">
+                            説明：マナ兵団のレベルを選択してください<br />
+                            <br />
+                            <img
+                                src="https://bbcamp.info/wp-content/uploads/camp-img/manacalc/troop-manabonus-help.png" /><br />
+                            兵団を選んでください。選択すると自動的にドロップダウンメニューのボーナス値が入れ替わりますので使用する兵団レベルを選択してください。
+                            レジェンド兵団の場合には、追加メニューでクラス選択が可能です。プライマリークラスを選択するとボーナスメニューの内容が変わります。
+                        </span>
+                        <span id="troopValue"
+                            style=" display: inline-block; _display: inline; font-weight: bold;">兵団マナボーナス：</span></span>
+                </td>
+            </tr>
+
+            <!-------------------------->
+            <!----   兵団選択肢追加  ---->
+            <!-------------------------->
+            <tr>
+                <td>
+                    <div class="radioTroopArea" id="makeImg">
+                        <input type="radio" name="troopset" id="trp1" value="selecttroop" checked><label
+                            for="trp1"></label>
+                        <input type="radio" name="troopset" id="trp2" value="selectmagictroop"><label
+                            for="trp2"></label>
+                        <input type="radio" name="troopset" id="trp3" value="selectstyxtroop"><label for="trp3"></label>
+                        <input type="radio" name="troopset" id="trp5" value="selectlegendarytroop"><label
+                            for="trp5"></label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="select legendary_troop_class selecttroop" id="selectroopclass">
+                        <select name="selectlegendarytroop" class="selecttroop" id="selecttroop">
+                            <option name="troopLv" id="tr0" value="0" checked><label for="tr0">プライマリークラス</label>
+                            </option>
+                            <option name="troopClass" id="tr1" value="バーバリアン" data-class="バーバリアン"><label
+                                    for="tr1">バーバリアン</label></option>
+                            <option name="troopClass" id="tr2" value="ドルイド" data-class="ドルイド"><label
+                                    for="tr2">ドルイド</label></option>
+                            <option name="troopClass" id="tr3" value="牧師" data-class="牧師"><label for="tr3">牧師</label>
+                            </option>
+                            <option name="troopClass" id="tr4" value="戦士" data-class="戦士"><label for="tr4">戦士</label>
+                            </option>
+                            <option name="troopClass" id="tr5" value="モンク" data-class="モンク"><label for="tr5">モンク</label>
+                            </option>
+                            <option name="troopClass" id="tr6" value="魔術師" data-class="魔術師"><label for="tr6">魔術師</label>
+                            </option>
+                            <option name="troopClass" id="tr7" value="パラディン" data-class="パラディン"><label
+                                    for="tr7">パラディン</label></option>
+                            <option name="troopClass" id="tr8" value="ローグ" data-class="ローグ"><label for="tr8">ローグ</label>
+                            </option>
+                            <option name="troopClass" id="tr9" value="レンジャー" data-class="レンジャー"><label
+                                    for="tr9">レンジャー</label></option>
+                            <option name="troopClass" id="tr10" value="ウィザード" data-class="ウィザード"><label
+                                    for="tr10">ウィザード</label></option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="select">
+                        <select name="selecttroop" class="selecttroop regulartroopbonus" id="selecttroop">
+                            <option name="troopLv" id="tr0" value="0" checked><label for="tr0">マナ兵団</label></option>
+                            <option name="troopLv" id="tr1" value="5"><label for="tr1">レベル 1 (+5%)</label></option>
+                            <option name="troopLv" id="tr2" value="5"><label for="tr2">レベル 2 (+5%)</label></option>
+                            <option name="troopLv" id="tr3" value="5"><label for="tr3">レベル 3 (+5%)</label></option>
+                            <option name="troopLv" id="tr5" value="5"><label for="tr4">レベル 4 (+5%)</label></option>
+                            <option name="troopLv" id="tr5" value="7"><label for="tr5">レベル 5 (+7%)</label></option>
+                            <option name="troopLv" id="tr6" value="7"><label for="tr6">レベル 6 (+7%)</label></option>
+                            <option name="troopLv" id="tr6" value="7"><label for="tr7">レベル 7 (+7%)</label></option>
+                            <option name="troopLv" id="tr6" value="7"><label for="tr8">レベル 8 (+7%)</label></option>
+                            <option name="troopLv" id="tr6" value="7"><label for="tr9">レベル 9 (+7%)</label></option>
+                            <option name="troopLv" id="tr6" value="7"><label for="tr10">レベル 10 (+7%)</label></option>
+                            <option name="troopLv" id="tr6" value="9"><label for="tr11">レベル 11 (+9%)</label></option>
+                            <option name="troopLv" id="tr6" value="9"><label for="tr12">レベル 12 (+9%)</label></option>
+                            <option name="troopLv" id="tr6" value="9"><label for="tr13">レベル 13 (+9%)</label></option>
+                            <option name="troopLv" id="tr6" value="9"><label for="tr14">レベル 14 (+9%)</label></option>
+                            <option name="troopLv" id="tr6" value="9"><label for="tr15">レベル 15 (+9%)</label></option>
+                            <option name="troopLv" id="tr6" value="9"><label for="tr16">レベル 16 (+9%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr17">レベル 17 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr18">レベル 18 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr19">レベル 19 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr20">レベル 20 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr21">レベル 21 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr22">レベル 22 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="13"><label for="tr23">レベル 23 (+13%)</label></option>
+                            <option name="troopLv" id="tr6" value="13"><label for="tr24">レベル 24 (+13%)</label></option>
+                            <option name="troopLv" id="tr6" value="13"><label for="tr25">レベル 25 (+13%)</label></option>
+                            <option name="troopLv" id="tr6" value="13"><label for="tr26">レベル 26 (+13%)</label></option>
+                            <option name="troopLv" id="tr6" value="13"><label for="tr27">レベル 27 (+13%)</label></option>
+                            <option name="troopLv" id="tr6" value="13"><label for="tr28">レベル 28 (+13%)</label></option>
+                            <option name="troopLv" id="tr6" value="15"><label for="tr29">レベル 29 (+15%)</label></option>
+                            <option name="troopLv" id="tr6" value="15"><label for="tr30">レベル 30 (+15%)</label></option>
+                        </select>
+                        <select name="selectmagictroop" class="selecttroop regulartroopbonus" id="selecttroop">
+                            <option name="troopLv" id="tr0" value="0" checked><label for="tr0">マジック兵団</label></option>
+                            <option name="troopLv" id="tr1" value="5"><label for="tr1">レベル 1 (+5%)</label></option>
+                            <option name="troopLv" id="tr2" value="5"><label for="tr2">レベル 2 (+5%)</label></option>
+                            <option name="troopLv" id="tr3" value="5"><label for="tr3">レベル 3 (+5%)</label></option>
+                            <option name="troopLv" id="tr5" value="5"><label for="tr4">レベル 4 (+5%)</label></option>
+                            <option name="troopLv" id="tr5" value="8"><label for="tr5">レベル 5 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="8"><label for="tr6">レベル 6 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="8"><label for="tr7">レベル 7 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="8"><label for="tr8">レベル 8 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="8"><label for="tr9">レベル 9 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="8"><label for="tr10">レベル 10 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr11">レベル 11 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr12">レベル 12 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr13">レベル 13 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr14">レベル 14 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr15">レベル 15 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr16">レベル 16 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="14"><label for="tr17">レベル 17 (+14%)</label></option>
+                            <option name="troopLv" id="tr6" value="14"><label for="tr18">レベル 18 (+14%)</label></option>
+                            <option name="troopLv" id="tr6" value="14"><label for="tr19">レベル 19 (+14%)</label></option>
+                            <option name="troopLv" id="tr6" value="14"><label for="tr20">レベル 20 (+14%)</label></option>
+                            <option name="troopLv" id="tr6" value="14"><label for="tr21">レベル 21 (+14%)</label></option>
+                            <option name="troopLv" id="tr6" value="14"><label for="tr22">レベル 22 (+14%)</label></option>
+                            <option name="troopLv" id="tr6" value="17"><label for="tr23">レベル 23 (+17%)</label></option>
+                            <option name="troopLv" id="tr6" value="17"><label for="tr24">レベル 24 (+17%)</label></option>
+                            <option name="troopLv" id="tr6" value="17"><label for="tr25">レベル 25 (+17%)</label></option>
+                            <option name="troopLv" id="tr6" value="17"><label for="tr26">レベル 26 (+17%)</label></option>
+                            <option name="troopLv" id="tr6" value="17"><label for="tr27">レベル 27 (+17%)</label></option>
+                            <option name="troopLv" id="tr6" value="17"><label for="tr28">レベル 28 (+17%)</label></option>
+                            <option name="troopLv" id="tr6" value="20"><label for="tr29">レベル 29 (+20%)</label></option>
+                            <option name="troopLv" id="tr6" value="20"><label for="tr30">レベル 30 (+20%)</label></option>
+                        </select>
+                        <select name="selectstyxtroop" class="selecttroop regulartroopbonus" id="selecttroop">
+                            <option name="troopLv" id="tr0" value="0" checked><label for="tr0">ステュクス兵団</label></option>
+                            <option name="troopLv" id="tr1" value="5"><label for="tr1">レベル 1 (+5%)</label></option>
+                            <option name="troopLv" id="tr2" value="5"><label for="tr2">レベル 2 (+5%)</label></option>
+                            <option name="troopLv" id="tr3" value="5"><label for="tr3">レベル 3 (+5%)</label></option>
+                            <option name="troopLv" id="tr5" value="5"><label for="tr4">レベル 4 (+5%)</label></option>
+                            <option name="troopLv" id="tr5" value="8"><label for="tr5">レベル 5 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="8"><label for="tr6">レベル 6 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="8"><label for="tr7">レベル 7 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="8"><label for="tr8">レベル 8 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="8"><label for="tr9">レベル 9 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="8"><label for="tr10">レベル 10 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="8"><label for="tr11">レベル 11 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr12">レベル 12 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr13">レベル 13 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr14">レベル 14 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="11"><label for="tr15">レベル 15 (+11%)</label></option>
+                            <option name="troopLv" id="tr6" value="14"><label for="tr16">レベル 16 (+14%)</label></option>
+                            <option name="troopLv" id="tr6" value="14"><label for="tr17">レベル 17 (+14%)</label></option>
+                            <option name="troopLv" id="tr6" value="14"><label for="tr18">レベル 18 (+14%)</label></option>
+                            <option name="troopLv" id="tr6" value="14"><label for="tr19">レベル 19 (+14%)</label></option>
+                            <option name="troopLv" id="tr6" value="14"><label for="tr20">レベル 20 (+14%)</label></option>
+                            <option name="troopLv" id="tr6" value="14"><label for="tr21">レベル 21 (+14%)</label></option>
+                            <option name="troopLv" id="tr6" value="14"><label for="tr22">レベル 22 (+14%)</label></option>
+                            <option name="troopLv" id="tr6" value="17"><label for="tr23">レベル 23 (+17%)</label></option>
+                            <option name="troopLv" id="tr6" value="17"><label for="tr24">レベル 24 (+17%)</label></option>
+                            <option name="troopLv" id="tr6" value="17"><label for="tr25">レベル 25 (+17%)</label></option>
+                            <option name="troopLv" id="tr6" value="17"><label for="tr26">レベル 26 (+17%)</label></option>
+                            <option name="troopLv" id="tr6" value="20"><label for="tr27">レベル 27 (+20%)</label></option>
+                            <option name="troopLv" id="tr6" value="20"><label for="tr28">レベル 28 (+20%)</label></option>
+                            <option name="troopLv" id="tr6" value="20"><label for="tr29">レベル 29 (+20%)</label></option>
+                            <option name="troopLv" id="tr6" value="20"><label for="tr30">レベル 30 (+20%)</label></option>
+                        </select>
+                        <select name="selectlegendarytroop" class="selecttroop legendTroopMenu legendtroopbonus"
+                            id="selecttroop">
+                            <option name="troopLv" id="tr0" value="0" checked><label for="tr0">レジェンド兵団</label></option>
+                            <option name="troopLv" id="tr1" value="5"><label for="tr1">レベル 1 (+5%)</label></option>
+                            <option name="troopLv" id="tr2" value="5"><label for="tr2">レベル 2 (+5%)</label></option>
+                            <option name="troopLv" id="tr3" value="5"><label for="tr3">レベル 3 (+5%)</label></option>
+                            <option name="troopLv" id="tr5" value="5"><label for="tr4">レベル 4 (+5%)</label></option>
+                            <option name="troopLv" id="tr5" value="8"><label for="tr5">レベル 5 (+8%)</label></option>
+                            <option name="troopLv" id="tr6" value="8"><label for="tr6">レベル 6 (+8%)</label></option>
+                            <option name="troopLv" id="tr7" value="8"><label for="tr7">レベル 7 (+8%)</label></option>
+                            <option name="troopLv" id="tr8" value="8"><label for="tr8">レベル 8 (+8%)</label></option>
+                            <option name="troopLv" id="tr9" value="8"><label for="tr9">レベル 9 (+8%)</label></option>
+                            <option name="troopLv" id="tr10" value="8"><label for="tr10">レベル 10 (+8%)</label></option>
+                            <option name="troopLv" id="tr11" value="8"><label for="tr11">レベル 11 (+8%)</label></option>
+                            <option name="troopLv" id="tr12" value="11"><label for="tr12">レベル 12 (+11%)</label></option>
+                            <option name="troopLv" id="tr13" value="11"><label for="tr13">レベル 13 (+11%)</label></option>
+                            <option name="troopLv" id="tr14" value="11"><label for="tr14">レベル 14 (+11%)</label></option>
+                            <option name="troopLv" id="tr15" value="11"><label for="tr15">レベル 15 (+11%)</label></option>
+                            <option name="troopLv" id="tr16" value="14"><label for="tr16">レベル 16 (+14%)</label></option>
+                            <option name="troopLv" id="tr17" value="14"><label for="tr17">レベル 17 (+14%)</label></option>
+                            <option name="troopLv" id="tr18" value="14"><label for="tr18">レベル 18 (+14%)</label></option>
+                            <option name="troopLv" id="tr19" value="14"><label for="tr19">レベル 19 (+14%)</label></option>
+                            <option name="troopLv" id="t20" value="14"><label for="tr20">レベル 20 (+14%)</label></option>
+                            <option name="troopLv" id="tr21" value="14"><label for="tr21">レベル 21 (+14%)</label></option>
+                            <option name="troopLv" id="tr22" value="14"><label for="tr22">レベル 22 (+14%)</label></option>
+                            <option name="troopLv" id="tr23" value="17"><label for="tr23">レベル 23 (+17%)</label></option>
+                            <option name="troopLv" id="tr24" value="17"><label for="tr24">レベル 24 (+17%)</label></option>
+                            <option name="troopLv" id="tr25" value="17"><label for="tr25">レベル 25 (+17%)</label></option>
+                            <option name="troopLv" id="tr26" value="17"><label for="tr26">レベル 26 (+17%)</label></option>
+                            <option name="troopLv" id="tr27" value="20"><label for="tr27">レベル 27 (+20%)</label></option>
+                            <option name="troopLv" id="tr28" value="20"><label for="tr28">レベル 28 (+20%)</label></option>
+                            <option name="troopLv" id="tr29" value="20"><label for="tr29">レベル 29 (+20%)</label></option>
+                            <option name="troopLv" id="tr30" value="20"><label for="tr30">レベル 30 (+20%)</label></option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+
+            <!---- ボーナス合計を表示 ---->
+            <tr>
+                <td>
+                    <span id="allbonus">マナボーナス総合計：</span>
+                    <span id="allBvalue"
+                        style=" display: inline-block; _display: inline; font-weight: bold; color: lightgreen;"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- タイル数テーブル -->
+    <table class="resulttable">
+        <tbody>
+            <tr>
+                <td width="55%" valign="bottom" colspan="2">ベース → ボーナス適用後</td>
+                <td width="45%" valign="bottom">次削減まで</td>
+            </tr>
+            <tr>
+                <td>
+                    <div width="40%" style="padding: 15px 0px">
+                        <center><span id="base2" style="font-size: 12px"></span></center>
+                    </div>
+                </td>
+                <td>
+                    <div width="15%" style="padding: 15px 0px">
+                        <center><span id="bonus2" style="font-size: 12px"></span></center>
+                    </div>
+                </td>
+                <td>
+                    <div width="45%" style="padding: 15px 0px">
+                        <center><span id="neednext" style="font-size: 12px"></span></center>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- <div class="versionnum">V34.2: V67 Master Class Update</div> -->
+
+
+    <!-- Rush Option 
+<table>
+<tr>
+  <th style="padding: 20px 0px 20px 0px;"><input type="checkbox" name="rushattack" id="rushattack" value="00"><label for="rushattack" onclick="">
+   ラッシュアタックの場合<img src="/wp-content/uploads/camp-img/manacalc/RushAttack.png" width="24px" valign="middle"></label>
+  </th>
+</tr>
+</tbody>
+</table> -->
+</body>
+
+</html>
+<!--- ★5兵団テスト --->

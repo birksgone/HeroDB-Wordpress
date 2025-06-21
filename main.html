@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <script src="https://unpkg.com/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6.3.7/animations/scale.css" />
+</head>
+
+<body>
+    <script src="https://kit.fontawesome.com/29b7f821e9.js" crossorigin="anonymous"></script>
+    <!-- faceicon Header -->
+    <div class="flex-header">
+        <div class="headertext busticon">{{current_post.cf_hero_icon_mini|raw}}</div>
+        <!-- <div class="headertext"><img class="busticon" src="https://bbcamp.info/wp-content/uploads/camp-img/busticon/oriental_female_mystic.png"></div> -->
+        <div class="headertext"><span class="titletextja">{{current_post.cf_heroname_ja}}</span><br><span
+                class="titletexten">{{current_post.cf_heroname_en}}</span><br>
+            <span class="dbtext">{{current_post.cf_heroname_the_title}}</span><br>
+            <span class="dbtext"><span
+                    class="starshape">{{current_post.cf_hero_star}}</span>{{current_post.cf_hero_star_name}} <span
+                    class="elementicon">{{current_post.cf_hero_element|raw}}</span></span>
+        </div>
+    </div>
+    <!-- Hidden Value for jQuery -->
+    <div class="acf_heroclass" style="display:none;">{{current_post.cf_hero_costume_flag}}</div>
+    <div class="acf_region" style="display:none;">{{current_post.cf_hero_realm}}</div>
+    <div class="acf_nameJa" style="display:none;">{{current_post.cf_heroname_ja}}</div>
+    <!-- Hidden Value for jQuery -->
+    <!-- Modal Image Box -->
+    <div id="graydisplay"></div>
+    <!-- Modal Image Box -->
+    <!-- Stats -->
+    <div class="flex-basestats" id="anchor-basic">
+        <div class="statsitem"><i class="fa-solid fa-user" title=" 攻撃力" id="fawhite"></i></div>
+        <div class="statsitem"><i class="fa-solid fa-gavel" title=" 攻撃力" id="fawhite"></i></div>
+        <div class="statsitem"><i class="fa-solid fa-shield" title=" 防御力" id="fawhite"></i></div>
+        <div class="statsitem"><i class="fa-solid fa-heart" title=" ライフ" id="fawhite"></i></div>
+        <div class="statsitem"><i class="fa-solid fa-bolt" title=" パワー" id="fawhite"></i></div>
+    </div>
+
+    <div class="flex-basestatsnumber">
+        <div class="statsitemfa"><i class="fa-solid fa-user" title="ベース" id="fawhite-mini"><span
+                    class="cbtext"></span></i></div>
+        <div class="statsnumber basestatsAtk"><span id="statsnumber">{{current_post.cf_baseattack}}<span></i></div>
+        <div class="statsnumber  basestatsDef"><span id="statsnumber">{{current_post.cf_basedef}}<span></i></i></div>
+        <div class="statsnumber basestatsHP"><span id="statsnumber">{{current_post.cf_basehp}}<span></i></div>
+        <div class="statsnumber statspower"><span id="statspower"
+                class="basePowerBB">{{current_post.cf_basepower}}<span></i></div>
+    </div>
+    <!-- Cos option stats -->
+    <div class="cosoptionbox">
+        <div class="cosstats">
+            <div class="flex-basestatsnumber cosFirst hidedom" id="cos1id">
+                <div class="statsitem cosboxiconwidth"><a class="cos1Url" href="#"><img
+                            src="/wp-content/uploads/camp-img/family/mask_1.png" title="コスチュームボーナス(+CB) 1着目"
+                            width="24px"></a><span class="cbtext"></a></div>
+                <div class="statsnumber"><span id="statsnumber" class="cb1Atk">{{current_post.cf_cb_attack}}</span>
+                </div>
+                <div class="statsnumber"><span id="statsnumber" class="cb1Def">{{current_post.cf_cb_def}}</span></div>
+                <div class="statsnumber"><span id="statsnumber" class="cb1HP">{{current_post.cf_cb_hp}}</span></div>
+                <div class="statsnumber fixwidthstats"><span id="statspower"
+                        class="cb1Power">{{current_post.cf_cb1_power}}</span></div>
+            </div>
+            <div class="flex-basestatsnumber cosSecond hidedom" id="cos2id">
+                <div class="statsitem cosboxiconwidth"><a class="cos2Url" href="#"><img
+                            src="/wp-content/uploads/camp-img/family/mask_2.png" title="コスチュームボーナス(+CB) 2着目"
+                            width="24px"></a><span class="cbtext"></a></div>
+                <div class="statsnumber"><span id="statsnumber" class="cb2Atk">{{current_post.cf_cb2_attack}}</span>
+                </div>
+                <div class="statsnumber"><span id="statsnumber" class="cb2Def">{{current_post.cf_cb2_def}}</span></div>
+                <div class="statsnumber"><span id="statsnumber" class="cb2HP">{{current_post.cf_cb2_hp}}</span></div>
+                <div class="statsnumber fixwidthstats"><span id="statspower"
+                        class="cb2Power">{{current_post.cf_cb2_power}}</span></div>
+            </div>
+            <div class="flex-basestatsnumber cosThird hidedom" id="cos3id">
+                <div class="statsitem cosboxiconwidth"><a class="cos3Url" href="#"><img
+                            src="/wp-content/uploads/camp-img/family/mask_3.png" title="コスチュームボーナス(+CB) 3着目"
+                            width="24px"></a><span class="cbtext"></a></div>
+                <div class="statsnumber"><span id="statsnumber" class="cb3Atk">{{current_post.cf_cb3_attack}}</span>
+                </div>
+                <div class="statsnumber"><span id="statsnumber" class="cb3Def">{{current_post.cf_cb3_def}}</span></div>
+                <div class="statsnumber"><span id="statsnumber" class="cb3HP">{{current_post.cf_cb3_hp}}</span></div>
+                <div class="statsnumber fixwidthstats"><span id="statspower"
+                        class="cb3Power">{{current_post.cf_cb3_power}}</span></div>
+            </div>
+            <div class="flex-basestatsnumber cosFourth hidedom" id="cos4id">
+                <div class="statsitem cosboxiconwidth"><a class="cos4Url" href="#"><img
+                            src="/wp-content/uploads/camp-img/family/mask_4.png" title="コスチュームボーナス(+CB) 4着目"
+                            width="24px"></a><span class="cbtext"></a></div>
+                <div class="statsnumber"><span id="statsnumber" class="cb3Atk">{{current_post.cf_cb4_attack}}</span>
+                </div>
+                <div class="statsnumber"><span id="statsnumber" class="cb3Def">{{current_post.cf_cb4_def}}</span></div>
+                <div class="statsnumber"><span id="statsnumber" class="cb3HP">{{current_post.cf_cb4_hp}}</span></div>
+                <div class="statsnumber fixwidthstats"><span id="statspower"
+                        class="cb3Power">{{current_post.cf_cb4_power}}</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cosomitbox hidedom">
+        <div class="flex-basestatsnumber">
+            <div class="linktoNocos statsitem"><a class="linknoCoshref" href="#"><img
+                        src="/wp-content/uploads/camp-img/family/mask0.png" title="コスなし本体へ" width="18px"></a><span
+                    class="cbtext">コスなし本体へ</span></div>
+        </div>
+    </div>
+    <div class="costumehelpbutton hidedom">
+        <span class="help_area"></span>
+        <span class="help_icon" style="padding-left: 15px;"><i class="fas fa-question-circle" style="color:gold"></i>
+            <span class="tooltiptitle">コスチュームボーナスとは?</span>
+        </span>
+        <span class="tooltip"><i class="fas fa-question-circle" style="color:gold"></i>
+            コスチューム持ち英雄のステータス値は固定の「ベース値」+「コスチュームボーナス」の合算です。ゲーム内でもコスチュームボーナス込で表示されていますので、サモンポータルなどではベースではなくボーナス込のステータス値です。<br><br>この英雄データベース上では、コスチュームの有無に関わらずベース値を表示、もしコスチュームが存在する場合、それぞれのボーナス上限時の値を加算して追加の行で表示しています。<br><br>
+            コスチュームに関する詳細は「<a href="https://bbcamp.info/wiki/costume/">コスチューム</a>」ページでご確認ください。<br><br>
+            [supsystic-tables id=445]
+        </span>
+        <span id="cosVal" style="display: inline-block; _display: inline; font-weight: bold;"></span>
+    </div>
+    <!-- Hero Base Info -->
+    <div class="flex-skill">
+        <div class="skillicon"><i class="fa-solid fa-toolbox" title="基本データ" id="fawhite"></i>基本データ</div>
+    </div>
+    <div class="flex-baseinfo">
+        <div class="infoicon"><i class="fa-solid fa-user-graduate" title="クラス" id="fawhite"></i></div>
+        <div class="info1">{{current_post.cf_hero_class_icon|raw}}</div>
+        <div class="info1">{{current_post.cf_hero_class}}</div>
+        <div class="infoicon"><i class="fa-solid fa-hourglass-half" title="マナ速度" id="fawhite"></i></div>
+        <div class="info1">{{current_post.cf_hero_mana_speed}}</div>
+    </div>
+    <div class="flex-baseinfo sectionFamily">
+        <div class="infoicon"><i class="fa-solid fa-theater-masks" title="ファミリー" id="fawhite"></i></div>
+        <div class="familyname">
+            {{current_post.cf_hero_family_icon|raw}}
+            <a href="https://bbcamp.info/herodb/?search-family={{current_post.cf_hero_family}}">
+                {{current_post.cf_hero_family|escape}}
+            </a>
+        </div>
+        <div class="familyterm">{{current_post.cf_hero_family_term|raw}}</div>
+    </div>
+    <!-- Passive SKills -->
+    <div class="flex-baseinfo sectionPassive">
+        <div class="infoicon"><i class="fa-solid fa-child" title="特有能力 / パッシブ" id="fawhite"></i></div>
+        <div class="info1"><span class="passiveicon">{{current_post.cf_hero_passive_icon|raw}}</span></div>
+        <div class="passive1"><span class="passivetitle">{{current_post.cf_hero_passive_name}}<span></div>
+        <div class="infopasive">{{current_post.cf_hero_passive_detail|raw}}</div>
+    </div>
+    <div class="flex-baseinfo passiverow2"> <!-- for Hide -->
+        <!-- <div class="infoiconblank"></div> -->
+        <div class="infoicon"><i class="fa-solid fa-child" title="特有能力 / パッシブ" id="fawhite"></i></div>
+        <div class="info1"><span class="passiveicon">{{current_post.cf_hero_passive_icon_2|raw}}</span></div>
+        <div class="passive1"><span class="passivetitle">{{current_post.cf_hero_passive_name_2}}</span></div>
+        <div class="infopasive">{{current_post.cf_hero_passive_detail_2|raw}}</div>
+        <!-- <div class="infoiconblank"></div> -->
+    </div>
+    <div class="flex-baseinfo passiverow3"> <!-- // for Hide -->
+        <div class="infoicon"><i class="fa-solid fa-child" title="特有能力 / パッシブ" id="fawhite"></i></div>
+        <div class="info1"><span class="passiveicon">{{current_post.cf_hero_passive_icon3|raw}}</span></div>
+        <div class="passive3"><span class="passivetitle">{{current_post.cf_hero_passive_name_3}}</span></div>
+        <div class="infopasive">{{current_post.cf_hero_passive_detail_3|raw}}</div>
+    </div>
+
+    <!-- CB Paasive SKills -->
+    <div class="flex-baseinfo sectionCBPassive costumepassiverow1">
+        <div class="infoicon"><i class="fa-solid fa-mask" title="コスチュームパッシブ：コスチュームを保持している場合のみ有効" id="fawhite"></i></div>
+        <div class="info1"><span class="passiveicon">{{current_post.cf_hero_passive_cb_icon1|raw}}</span></div>
+        <div class="passive1"><span class="passivetitle">{{current_post.cf_hero_passive_cb_name_1}}<span></div>
+        <div class="infopasive">{{current_post.cf_hero_passive_cb_detail_1|raw}}</div>
+    </div>
+    <!-- CB Paasive SKills -->
+    <div class="flex-baseinfo sectionCBPassive iconCBpassive2 costumepassiverow2">
+        <div class="infoicon"><i class="fa-solid fa-mask" title="コスチュームパッシブ：コスチュームを保持している場合のみ有効" id="fawhite"></i></div>
+        <div class="info1"><span class="passiveicon">{{current_post.cf_hero_passive_cb_icon2|raw}}</span></div>
+        <div class="passive1"><span class="passivetitle">{{current_post.cf_hero_passive_cb_name_2}}<span></div>
+        <div class="infopasive">{{current_post.cf_hero_passive_cb_detail_2|raw}}</div>
+    </div>
+    <!-- Special SKills -->
+    <div class="flex-skill">
+        <div class="skillicon"><i class="fa-solid fa-hammer" title="特殊スキル" id="fawhite"></i>特殊スキル</div>
+        <div class="skillname">{{current_post.cf_hero_skill_name}}</div>
+        <div class="skillindent skill1">{{current_post.cf_hero_skill_1|raw}}</div>
+        <div class="skillindent skill2">{{current_post.cf_hero_skill_2|raw}}</div>
+        <div class="skillindent skill3">{{current_post.cf_hero_skill_3|raw}}</div>
+        <div class="skillindent skill4">{{current_post.cf_hero_skill_4|raw}}</div>
+        <div class="skillindent skill5">{{current_post.cf_hero_skill_6|raw}}</div>
+    </div>
+    <!-- Elemental Link -->
+    <div class="flex-elemlink sectionElink">
+        <div class="iconrotate"><i class="fas fa-link" title="属性リンク" id="faelemcolor"></i></div>
+        <div class="elink2">{{current_post.cf_hero_skill_5|raw}}</div>
+    </div>
+    <div class="dbfooter">
+        <div class="skillicon"></div>
+    </div>
+    <div class="headercard">
+        <span class="herocardicon">{{current_post.cf_hero_card|raw}}</span>
+    </div>
+</body>
+
+</html>

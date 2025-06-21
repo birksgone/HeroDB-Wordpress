@@ -1,0 +1,570 @@
+/* v3.1 Charging Tide compatible ----------------------*/
+/* font face for resposive ----------------------*/
+@font-face {
+	font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+	font-weight: normal;
+	 src: local("メイリオ,Hiragino Kaku Gothic ProN,sans-serif"),
+		  local("メイリオ,Hiragino Kaku Gothic ProN,sans-serif"),
+		  local("メイリオ,Hiragino Kaku Gothic ProN,sans-serif");
+}
+/* @font-face {
+	font-family: "YuGothic-M";
+	font-weight: normal;
+	 src: local("YuGothic-Medium,メイリオ,sans-serif"),
+		  local("Yu Gothic Medium,メイリオ,sans-serif"),
+		  local("YuGothic-Regular,メイリオ,sans-serif");
+} */
+
+
+@font-face {
+	font-family: "YuGothic-M";
+	font-weight: bold;
+	 src: local("YoGothic-Bold"),
+		  local("Yu Gothic");
+}
+
+@font-face {
+  font-family: number;
+  src: local('Droid Sans');
+  unicode-range: U+0030-0039;
+}
+
+html {
+	font-size: 62.5%;/* 16px x 0.625 = 10px(=1rem) */
+}
+
+body {
+	font-size: 1.6rem;/* 16px */
+	font-family: -apple-system, blinkMacSystemFont, YuGothic-M, YuGothic, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+	-webkit-text-size-adjust: 100%;
+	font-feature-settings: "palt";
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	::i-block-chrome, body {
+		font-feature-settings: "pkna";
+	}
+}
+
+/* Hero Card Modal */
+.headercard{
+  display: flex;
+  justify-content: flex-end;
+
+}
+.herocardicon img {
+  height: 70px;
+}
+#graydisplay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%!important;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  z-index: 999;
+}
+#graydisplay img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 300px;
+  max-height: 80%;
+  height: auto;
+  z-index: 999;
+}
+/* Hide DOM ----------------------*/
+.hidedom{ display: none !important;}
+
+/* Hide DOM ----------------------*/
+
+
+/* faceicon Header ----------------------*/
+.flex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-flow: nowrap;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    background-color: {{current_post.cf_card_color}};
+    border-radius: 4px;
+    height: 100%;
+    padding: 12px 12px 2px 12px;
+    margin-bottom: 9px;
+    line-height: 1.3em;
+    gap: 5px;
+}
+/* .flex-header:nth-child(2) {
+ -webkit-align-self: flex-end;
+ align-self: flex-end;
+} */
+
+/* .animated-gradient {
+  animation: animateBg 10s linear infinite;
+  background-image: linear-gradient(0deg,{{current_post.cf_card_color}},#707070,{{current_post.cf_card_color}},#707070);
+  background-size: 100% 300%;
+}
+@keyframes animateBg {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 0% 100%; }
+} */
+
+
+
+.busticon{
+  /* max-height: 80px; */
+  width: 80px;
+  filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.65));
+  padding-bottom: 8px;
+}
+.faceicon{
+  max-height: 80px;
+}
+.headertext{
+  text-align: right;
+
+  color: white;
+}
+.titletextja{
+  font-weight: bold;
+  font-size: 16px;
+}
+.titletexten{
+  font-size: 10px;
+}
+.dbtext{
+  text-align: right;
+  font-size: 12px;
+  color: white;
+}
+.starshape{
+  color: #DFC15E;
+  font-size: 9px;
+}
+.elementalicon{
+  max-height: 12px;
+  width: auto;
+  vertical-align: middle;
+}
+/* ↑faceicon Header --------------------*/
+
+/* Base Stats --------------------------*/
+.flex-basestats{
+    display: flex;
+    background: #232425;
+    border: 0px;
+    border-radius: 12px;
+    padding: 2px;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+.flex-basestats > div{
+  width: 36px;
+  text-align: center; 
+  background: {{current_post.cf_card_color}};
+  margin: 2px 2px 0 2px;
+  border-radius: 4px;
+  padding: 1px 1px 1px 1px;
+}
+.flex-basestatsnumber{
+    display: flex;
+    background: #232425;
+    border-bottom: 1px dashed #5A5A5A;
+    padding: 2px 2px 2px 18px;
+    flex-grow:1;
+    margin: 0;
+    justify-content: space-between;
+  align-items: flex-end;
+}
+
+.nodot {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.statsitem{
+  text-align: left;
+}
+.statsitemfa{
+  text-align: left;
+  width: 30px;
+}
+#fawhite-mini{
+  color: white;
+  width: 24px;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 4px;
+}
+#fawhite{
+  color: white;
+  font-size: 14px;
+  background: {{current_post.cf_card_color}};
+  border-radius: 4px;
+  padding: 4px;
+}
+#statsnumber{
+  font-family: "Roboto, Droid Sans", "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック", sans-serif;
+  color: white;
+  text-align: right;
+  font-weight: bold;
+  font-size: 14px;
+
+}
+.statsnumber{
+  font-family: "Roboto, Droid Sans", "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック", sans-serif;
+  color: white;
+  text-align: right;
+  font-weight: bold;
+  font-size: 14px;
+  width: 100px;
+}
+#statspower{
+  font-family: "Roboto, Droid Sans", "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック", sans-serif;
+  color: grey;
+  text-align: right;
+  font-weight: bold;
+  margin-right:auto;
+  font-size: 14px;
+}
+.cosboxiconwidth{
+  width: 30px;
+  text-align:center;
+}
+/* .fixwidthstats{
+  min-width: 40px;
+} */
+
+.linktoNocos{
+  padding-left: 2px;
+  font-size: 13px;
+  text-align: left;
+
+}
+
+/* ↑Base Stats ---------------------------*/
+
+
+/* Base List --------------------*/
+.flex-baseinfo{
+  display: flex;
+    background: #232425;
+    border-bottom: 1px dashed #5A5A5A;
+    padding: 5px 0 5px 4px;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+.flex-baseinfo > div{
+  color: white;
+}
+.infoicon{
+  width: 32px;
+  height: 24px;
+  text-align: center; 
+  background: {{current_post.cf_card_color}};
+  margin: 2px 2px 1px 0px;
+  border-radius: 4px;
+  padding: 1px 1px 1px 1px;
+  font-size: 9px;
+}
+.infoiconblank{
+  width: 32px;
+  text-align: center; 
+  margin: 2px 2px 1px 0px;
+  border-radius: 4px;
+  padding: 1px 1px 1px 1px;
+  font-size: 9px;
+}
+.info1{
+  font-size: 13px;
+  width: auto;
+  text-align: center;
+  align-self: center;
+  margin-top: 4px;
+  padding-left: 8px;
+  padding-right: 10px;
+  color: white;
+}
+.passiveicon{
+  max-height: 24px;
+  width: auto;
+}
+.passivetitle{
+  display: inline;
+  vertical-align: bottom;
+  font-size: 14px;
+}
+.info2{
+  font-size: 13px;
+  align-self: center;
+  margin-top: 2px;
+  color: white;
+  padding: 0 5% 0 2%;
+  width: auto;
+}
+.infopasive{
+  padding: 0 10px 5px 42px;
+  font-size: 14px;
+}
+
+.passive1{ min-width: 200px;}
+.passive2{ min-width: 200px;}
+.passive3{ min-width: 200px;}
+.icon16{
+  height: 18px;
+}
+
+.familyname{
+  display: inline;
+  vertical-align: bottom;
+  width: 90%;
+  font-size: 13px;
+}
+.familyterm{
+  padding: 0 10px 5px 42px;
+  font-size: 14px;
+}
+
+/* ↑Base List --------------------*/
+
+/* Region (optional) --------------------*/
+.flex-region{
+  display: flex;
+    background: #232425;
+    border-bottom: 1px dashed #5A5A5A;
+    padding: 5px 0 5px 4px;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+.flex-region > div{
+  font-size: 13px;
+  color: white;
+}
+
+
+/* Special Skills --------------------*/
+
+.flex-skill{
+  display: flex;
+    background: #232425;
+    border-bottom: 1px dashed #5A5A5A;
+    padding: 5px 0 5px 4px;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+.flex-baseinfo > div{
+  color: white;
+}
+.skillicon{
+  width: 100%;
+  text-align: center;
+  background: {{current_post.cf_card_color}};
+  margin: 2px 4px 1px 0px;
+  border-radius: 4px;
+  padding: 1px 1px 1px 1px;
+  font-size: 13px;
+  color: white;
+}
+
+.skillindent {
+  min-width: 300px;
+  font-size: 14px;
+  color: white;
+  text-indent: -0.4em;
+  padding: 5px 9px 2px 2em;
+}
+
+
+
+.skillname {
+  font-size: 13px;
+  font-weight: bold;
+  width: 100%;
+  color: white;
+  padding: 5px 9px 4px 1em;
+}
+.flex-elemlink{
+display: flex;
+    background: #232425;
+    border-bottom: 1px dashed #5A5A5A;
+    padding: 5px 0 5px 4px;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: flex-start;
+}
+.elinkicon{
+  height: 12px;
+  vertical-align: top;
+  align-self: flex-start;
+}
+.elink1{
+  width: 32px;
+  text-align: center;
+  align-self: center;
+  margin-top: 4px;
+  padding-left: 8px;
+  color: white;
+}
+.elink2{
+  font-size: 13px;
+  align-self: center;
+  margin-top: 2px;
+  color: white;
+  padding: 0 0 0 2%;
+  width: 80%;
+  padding-left:1em;
+	text-indent:-1em;
+}
+
+/* Elemental Link Icon --------------------*/
+#faelemcolor{
+  background: transparent;
+  color: {{current_post.cf_card_color}};
+}
+
+.iconrotate{
+  transform: rotate(45deg);
+    font-size: 14px;
+  background: transparent;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.dbfooter{
+    background: #232425;
+    padding: 5px 0 5px 4px;
+}
+
+/* --- JS Tooltip --- */
+.help_area {
+  position:relative;
+}
+.help_icon {
+  width:20px;
+  height:20px;
+  line-height:20px;
+  vertical-align:middle;
+  font-size:16px;
+  text-align:center;
+  cursor:pointer;
+}
+.tooltiptitle{
+  font-size: 13px;
+}
+.tooltip {
+  z-index: 999;
+  width: 300px;
+  position:absolute;
+  background-color:rgba(0,0,0,0.8);
+  color:white;
+  font-size: 12px;
+  font-weight: normal;
+  text-align: left;
+  border: solid 2px #DFC15E;
+  border-radius:0.3em;
+  padding:1em;
+  margin:0.2em 0.5em;
+  display:none;
+}
+
+/* Special Skills xCharge bullet and indent ----------*/
+ul.skillbullet{
+  list-style-type: none;
+  padding-left: 0px;
+  margin-left: 0px;
+}
+ul.skillbullet li{
+  list-style-type: none;
+  padding: 0 0 8px 0;
+}
+
+/* Family & Passive bullet and indent ----------*/
+ul.familybullet{
+  list-style-type: none;
+  position: relative;
+  padding-left: 0px;
+  margin-left: 20px;
+}
+ul.familybullet li:before{
+  list-style-type: none;
+  display: block;
+  position: absolute;
+
+  left: -15px;
+  color: white;
+  content: '・';
+}
+/* Family and Class icon ----------*/
+.familyicon{
+	max-height: 24px;
+  vertical-align: middle;
+}
+.classicon{
+  	max-height: 24px;
+}
+
+/* ADDINFO Tooltips ----------*/
+.addinfotitle{
+  display: block;
+  text-align: center;
+}
+
+.addinfobody {
+  margin-left: 15px;
+}
+.addinfobody ul {
+  list-style: none; /* リストのマーカーを非表示にする */
+  padding-left: 0; /* パディングをリセット */
+  text-indent: -12px;
+}
+
+.addinfobody ul li::before {
+  content: "\2022";
+  margin-right: 5px; /* マーカーとテキストの間隔 */
+}
+
+.addinfoHere1 ul {
+  list-style: disc; /* 独自のスタイルを指定 */
+  padding-left: 16px; /* あなたの要件に合わせてパディングを指定 */
+}
+.addinfoHere2 ul {
+  list-style: disc; /* 独自のスタイルを指定 */
+  padding-left: 16px; /* あなたの要件に合わせてパディングを指定 */
+}
+.addinfoHere3 ul {
+  list-style: disc; /* 独自のスタイルを指定 */
+  padding-left: 16px; /* あなたの要件に合わせてパディングを指定 */
+}
+.addinfoHere4 ul {
+  list-style: disc; /* 独自のスタイルを指定 */
+  padding-left: 16px; /* あなたの要件に合わせてパディングを指定 */
+}
+.addinfoHere5 ul {
+  list-style: disc; /* 独自のスタイルを指定 */
+  padding-left: 16px; /* あなたの要件に合わせてパディングを指定 */
+}
+.resetIndent{
+  text-indent: 0;
+}
+
+/* Tippy Tooltop----------*/
+.tippy-box[data-theme~='addinfoBlue'] {
+  /* background: rgb(26,55,88);
+  background: linear-gradient(90deg, rgba(26,55,88,1) 0%, rgba(46,91,127,1) 50%, rgba(26,55,88,1) 100%); */
+  background-color: #444444;
+  color: whitesmoke;
+  font-size: 13px;
+  arrow: false;
+  padding: 10px;
+}
+.tippy-box[data-theme~='addinfoBlue'] ul {
+  margin-left: 0; /* 調整したい値に変更 */
+  padding-left: 20px; /* インデントを追加したい場合に設定 */
+}
